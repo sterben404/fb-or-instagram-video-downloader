@@ -45,7 +45,7 @@ print(red+'Download Video Facebook or Instagram\n')
 print(yellow+'1. Video Instagram Downloader')
 print(blue+'2. Video Facebook Downloader')
 
-pilih = input(reset+'Select Menu: '+yellow)
+pilih = raw_input(reset+'Select Menu: '+yellow)
 if pilih == '1':
 	if os.name == 'nt':
 		os.system('cls')
@@ -63,7 +63,7 @@ if pilih == '1':
 	print(red+'-----Video - Downloader-----')
 	print(reset+'Example :%s https://www.instagram.com/p/xxxxxxxxxx/'%green)
 	print(reset+'Author : %sSterben404' % red+reset)
-	urls = input('Link Video : '+green)
+	urls = raw_input('Link Video : '+green)
 	print(yellow+'Checking Video...'+reset)
 	def main_ig(req):
 		try:
@@ -101,7 +101,7 @@ elif pilih == '2':
 	print(red+'-----Video - Downloader-----')
 	print(reset+'Example :%s https://web.facebook.com/story.php?story_fbid=xxxxxxxxxxxxxxxxxxxxxx'%green)
 	print(reset+'Author :%s Sterben404'%red+reset)
-	urls = input('Link Video : '+green)
+	urls = raw_input('Link Video : '+green)
 	print(yellow+'Checking Video...'+reset)
 	def main_fb(req):
 		try:
