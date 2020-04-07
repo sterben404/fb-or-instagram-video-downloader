@@ -67,20 +67,20 @@ if pilih == '1':
 	print(yellow+'Checking Video...'+reset)
 	def main_ig(req):
 		try:
-			url = urls.replace('web.facebook.com','www.facebook.com').replace('m.facebook.com','www.facebook.com')
-			req = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+			req = requests.get(urls, headers={'User-Agent': 'Mozilla/5.0'})
 		except requests.exceptions.MissingSchema:
 			print(reset+'[ %s!%s ] URL Error' % (red,reset))
 			exit()
 		pass
-		regex = re.search('(?<="og:video" content=")(.*?)(?=" />)', req.content)
+		r = re.search('(?<="og:video" content=")(.*?)(?=" />)', req.content)
+		regex = r.group().replace('&amp;','&')
 		if regex == None:
 			print(red+'Video Not Found or Video Private!'+reset)
 			exit()
 		else:
 			nama = random.randrange(0,9999999999)
 			loading()
-			download = requests.get(regex.group(), headers={'User-Agent': 'Mozilla/5.0'})
+			download = requests.get(regex, headers={'User-Agent': 'Mozilla/5.0'})
 			with open('Video/IG-%s'%nama+'.mp4','ab') as file:
 				file.write(download.content)
 				file.close()
@@ -111,18 +111,19 @@ elif pilih == '2':
 			print(reset+'[ %s!%s ] URL Error' % (red,reset))
 			exit()
 		pass
-		regex = re.search('(?<=hd_src:")(.*)(?=",sd_src:)', req.content)
+		r = re.search('(?<=og:video" content=")(.*?)(?=" />)', req.content)
+		regex = r.group().replace('&amp;','&')
 		if regex == None:
 			print(red+'Video Not Found or Video Private!'+reset)
 			exit()
 		else:
 			nama = random.randrange(0,9999999999)
 			loading()
-			download = requests.get(regex.group(), headers={'User-Agent': 'Mozilla/5.0'})
-			with open('Video/%s'%nama+'.mp4','ab') as file:
+			download = requests.get(regex, headers={'User-Agent': 'Mozilla/5.0'})
+			with open('Video/FB-%s'%nama+'.mp4','ab') as file:
 				file.write(download.content)
 				file.close()
-			print(green+'\n\nDownload Video Success : '+yellow+'Video/%s' % nama+'.mp4'+reset)
+			print(green+'\n\nDownload Video Success : '+yellow+'Video/FB-%s' % nama+'.mp4'+reset)
 	main_fb(urls)
 else:
 	print(reset+'[ %s!%s ] Menu Not Found' % (red,reset))
